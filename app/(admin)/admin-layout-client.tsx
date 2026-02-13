@@ -1,15 +1,24 @@
-"use client";
+"use client"
 
-import AdminSidebar from "@/components/admin/Sidebar";
-import AdminHeader from "@/components/admin/Header";
-import { useState } from "react";
+import AdminSidebar from "@/components/admin/Sidebar"
+import AdminHeader from "@/components/admin/Header"
+import { useUIStore } from "@/stores/useUIStore"
+import { useEffect, useState } from "react"
 
 export default function AdminLayoutClient({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const { sidebarOpen, setSidebarOpen, sidebarCollapsed, toggleSidebarCollapsed } = useUIStore()
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  // ก่อน hydrate เสร็จ ใช้ค่า default (expanded) เพื่อไม่ให้ sidebar บัง content
+  const collapsed = mounted ? sidebarCollapsed : false
 
   return (
     <div className="min-h-screen bg-background">
@@ -29,13 +38,13 @@ export default function AdminLayoutClient({
       </div>
 
       {/* Desktop sidebar */}
-      <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-64 lg:flex-col">
-        <AdminSidebar />
+      <div className={`hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:flex-col transition-all duration-300 ${collapsed ? 'lg:w-16' : 'lg:w-64'}`}>
+        <AdminSidebar collapsed={collapsed} />
       </div>
 
       {/* Main content */}
-      <div className="lg:pl-64">
-        <AdminHeader onMenuClick={() => setSidebarOpen(true)} />
+      <div className={`transition-all duration-300 ${collapsed ? 'lg:pl-16' : 'lg:pl-64'}`}>
+        <AdminHeader onMenuClick={() => setSidebarOpen(true)} onCollapseToggle={toggleSidebarCollapsed} collapsed={collapsed} />
         <main>{children}</main>
       </div>
     </div>

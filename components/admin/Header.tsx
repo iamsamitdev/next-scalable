@@ -11,9 +11,11 @@ import { ThemeToggle } from '@/components/ui/theme-toggle'
 
 interface AdminHeaderProps {
   onMenuClick: () => void
+  onCollapseToggle?: () => void
+  collapsed?: boolean
 }
 
-function AdminHeader({ onMenuClick }: AdminHeaderProps) {
+function AdminHeader({ onMenuClick, onCollapseToggle, collapsed }: AdminHeaderProps) {
 
   // ฟังก์ชันสำหรับออกจากระบบ
   const handleLogout = async () => {
@@ -34,6 +36,17 @@ function AdminHeader({ onMenuClick }: AdminHeaderProps) {
             size="icon"
             onClick={onMenuClick}
             className="lg:hidden"
+          >
+            <Menu className="h-5 w-5" />
+          </Button>
+
+          {/* Desktop collapse toggle */}
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={onCollapseToggle}
+            className="hidden lg:flex"
+            title={collapsed ? 'ขยายเมนู' : 'ย่อเมนู'}
           >
             <Menu className="h-5 w-5" />
           </Button>

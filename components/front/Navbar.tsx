@@ -15,7 +15,12 @@ import {
 import { Package2, Menu, LogIn, Sparkles, X, ChevronDown, Palette, TrendingUp, Monitor, Grid3X3 } from 'lucide-react'
 import { ThemeToggleSimple } from '../ui/theme-toggle'
 
+import useCounterStore from '@/stores/useCounterStore'
+
 function FrontNavbar() {
+
+  const { count } = useCounterStore()
+
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isServiceDropdownOpen, setIsServiceDropdownOpen] = useState(false)
   const pathname = usePathname()
@@ -189,6 +194,7 @@ function FrontNavbar() {
 
             {/* Desktop Login Button */}
             <div className="hidden md:flex items-center gap-3">
+              <div>Count: {count}</div>
               <ThemeToggleSimple />
               <Button 
                 asChild 

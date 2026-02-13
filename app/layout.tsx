@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import { Inter, Anuphan } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/contexts/theme-context"
+import { NuqsAdapter } from "nuqs/adapters/next/app"
 
 const inter = Inter({
   variable: "--font-inter",
@@ -52,7 +53,9 @@ export default function RootLayout({
       </head>
       <body className={`${inter.variable} ${anuphan.variable} font-sans antialiased`}>
         <ThemeProvider>
-          {children}
+          <NuqsAdapter>
+            {children}
+          </NuqsAdapter>
         </ThemeProvider>
       </body>
     </html>

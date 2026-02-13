@@ -5,9 +5,10 @@ import { Button } from '@/components/ui/button'
 
 interface AdminSidebarProps {
   onClose?: () => void
+  collapsed?: boolean
 }
 
-function AdminSidebar({ onClose }: AdminSidebarProps) {
+function AdminSidebar({ onClose, collapsed = false }: AdminSidebarProps) {
   const pathname = usePathname()
   
   const navigation = [
@@ -36,10 +37,10 @@ function AdminSidebar({ onClose }: AdminSidebarProps) {
   return (
     <div className="flex h-full flex-col bg-background/90 backdrop-blur-sm border-r border-border/30">
       {/* Header */}
-              <div className="flex h-16 items-center justify-between px-6 border-b border-border/30">
+              <div className={`flex h-16 items-center border-b border-border/30 ${collapsed ? 'justify-center px-2' : 'justify-between px-6'}`}>
         <div className="flex items-center gap-2">
-          <Package2 className="h-8 w-8 text-blue-600" />
-          <span className="text-lg font-bold text-foreground">จัดการคลังสินค้า</span>
+          <Package2 className="h-8 w-8 text-blue-600 shrink-0" />
+          {!collapsed && <span className="text-lg font-bold text-foreground">จัดการคลังสินค้า</span>}
         </div>
         {onClose && (
           <Button variant="ghost" size="icon" onClick={onClose} className="lg:hidden">
@@ -49,7 +50,7 @@ function AdminSidebar({ onClose }: AdminSidebarProps) {
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 px-4 py-4 space-y-2">
+      <nav className={`flex-1 py-4 space-y-2 ${collapsed ? 'px-2' : 'px-4'}`}>
         {navigation.map((item) => {
           const Icon = item.icon
           const active = isActive(item.href)
@@ -58,25 +59,28 @@ function AdminSidebar({ onClose }: AdminSidebarProps) {
             <Link
               key={item.name}
               href={item.href}
-              className={`flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-md transition-colors ${
+              className={`flex items-center gap-3 py-2 text-sm font-medium rounded-md transition-colors ${
+                collapsed ? 'justify-center px-2' : 'px-3'
+              } ${
                 active
                   ? 'bg-primary/10 text-primary'
                   : 'text-muted-foreground hover:bg-accent hover:text-accent-foreground'
               }`}
               onClick={onClose}
+              title={collapsed ? item.name : undefined}
             >
-              <Icon className="h-5 w-5" />
-              {item.name}
+              <Icon className="h-5 w-5 shrink-0" />
+              {!collapsed && item.name}
             </Link>
           )
         })}
       </nav>
 
       {/* Footer */}
-              <div className="p-4 border-t border-border/30">
-                  <Button onClick={handleLogout} variant="ghost" className="w-full justify-start gap-3 text-destructive hover:bg-destructive/10 hover:text-destructive">
-          <LogOut className="h-5 w-5" />
-          ออกจากระบบ
+              <div className={`border-t border-border/30 ${collapsed ? 'p-2' : 'p-4'}`}>
+                  <Button onClick={handleLogout} variant="ghost" className={`w-full gap-3 text-destructive hover:bg-destructive/10 hover:text-destructive ${collapsed ? 'justify-center px-2' : 'justify-start'}`} title={collapsed ? 'ออกจากระบบ' : undefined}>
+          <LogOut className="h-5 w-5 shrink-0" />
+          {!collapsed && 'ออกจากระบบ'}
         </Button>
       </div>
     </div>
