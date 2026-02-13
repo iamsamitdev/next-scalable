@@ -14,6 +14,7 @@ export default defineConfig({
       include: [
         "lib/**/*.ts",
         "stores/**/*.ts",
+        "components/**/*.tsx",
       ],
       exclude: ["**/*.test.{ts,tsx}", "**/*.d.ts"],
     },

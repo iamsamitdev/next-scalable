@@ -1,0 +1,32 @@
+services:
+  # PostgreSQL Database (สำหรับอนาคตเมื่อเพิ่ม Prisma)
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: smartstore
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "6432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  # Next.js Application (Smart Store)
+  app:
+    build:
+      context: .
+      args:
+        NEXT_PUBLIC_APP_NAME: "Smart Store"
+        NEXT_PUBLIC_API_URL: "http://localhost:3000/api"
+        NEXT_PUBLIC_SITE_URL: "https://smartstore.com"
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres@db:5432/smartstore
+      AUTH_SECRET: production-secret-key
+      NEXT_PUBLIC_APP_NAME: "Smart Store"
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:

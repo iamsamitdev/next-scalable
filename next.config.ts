@@ -1,6 +1,13 @@
 import type { NextConfig } from "next";
 
+// รันคำสั่ง $env:ANALYZE="true"; npx next build --webpack
+// eslint-disable-next-line @typescript-eslint/no-require-imports
+// const withBundleAnalyzer = require("@next/bundle-analyzer")({
+//   enabled: process.env.ANALYZE === "true",
+// })
+
 const nextConfig: NextConfig = {
+  output: "standalone",
   /* config options here */
   images: {
     remotePatterns: [
@@ -39,4 +46,5 @@ const nextConfig: NextConfig = {
   }
 };
 
+// export default withBundleAnalyzer(nextConfig)
 export default nextConfig;
