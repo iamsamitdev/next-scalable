@@ -3,6 +3,7 @@
 import AdminSidebar from "@/components/admin/Sidebar"
 import AdminHeader from "@/components/admin/Header"
 import { useUIStore } from "@/stores/useUIStore"
+import { Suspense } from "react"
 
 export default function AdminLayoutClient({
   children,
@@ -38,7 +39,11 @@ export default function AdminLayoutClient({
       {/* Main content */}
       <div className={`transition-all duration-300 ${collapsed ? 'lg:pl-16' : 'lg:pl-64'}`}>
         <AdminHeader onMenuClick={() => setSidebarOpen(true)} onCollapseToggle={toggleSidebarCollapsed} collapsed={collapsed} />
-        <main>{children}</main>
+        <main>
+          <Suspense fallback={<div className="p-6">กำลังโหลด...</div>}>
+            {children}
+          </Suspense>
+        </main>
       </div>
     </div>
   );

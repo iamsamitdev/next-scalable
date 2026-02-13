@@ -184,7 +184,7 @@ function Footer() {
         <div className="mt-16 pt-8 border-t border-gray-700/50 dark:border-border">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="text-gray-400 dark:text-gray-400 flex items-center gap-2">
-              © {new Date().getFullYear()} Smart Store. สงวนลิขสิทธิ์ทุกส่วน
+              © 2026 Smart Store. สงวนลิขสิทธิ์ทุกส่วน
               <Heart className="h-4 w-4 text-red-400 animate-pulse" />
             </div>
             <div className="flex space-x-8 mt-4 md:mt-0">

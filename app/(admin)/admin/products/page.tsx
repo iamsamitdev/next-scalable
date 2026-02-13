@@ -1,7 +1,9 @@
-import type { Metadata } from "next";
+import type { Metadata } from "next"
 // import Products from './products'
-// import ProductFilter from "./ProductFilter";
-import ProductFilters from "./ProductFilters";
+// import ProductFilter from "./ProductFilter"
+import ProductFilters from "./ProductFilters"
+import AddToCartButton from "./AddToCartButton"
+import ClearCartButton from "./ClearCartButton"
 
 export const metadata: Metadata = {
     title: "สินค้า | จัดการคลังสินค้า",
@@ -77,7 +79,11 @@ async function ProductsPage({searchParams}: Props) {
 
   return (
     <div className="p-6">
-      <h1 className="text-3xl font-bold mb-6">📦 สินค้า</h1>
+
+      <div className="flex items-center justify-between mb-6">
+        <h1 className="text-3xl font-bold mb-6">📦 สินค้า</h1>
+        <ClearCartButton />
+      </div>
 
       {/* Client Component จัดการ URL State */}
       <ProductFilters />
@@ -92,6 +98,7 @@ async function ProductsPage({searchParams}: Props) {
               <th className="px-4 py-3 text-left">หมวดหมู่</th>
               <th className="px-4 py-3 text-right">ราคา</th>
               <th className="px-4 py-3 text-right">สต็อก</th>
+              <th className="px-4 py-3 text-right">เพิ่มลงตะกร้า</th>
             </tr>
           </thead>
           <tbody>
@@ -102,6 +109,9 @@ async function ProductsPage({searchParams}: Props) {
                 <td className="px-4 py-3">{product.category}</td>
                 <td className="px-4 py-3 text-right">฿{product.price.toLocaleString()}</td>
                 <td className="px-4 py-3 text-right">{product.stock}</td>
+                <td className="px-4 py-3 text-right">
+                  <AddToCartButton product={{ id: product.id, name: product.name, price: product.price }} />
+                </td>
               </tr>
             ))}
           </tbody>

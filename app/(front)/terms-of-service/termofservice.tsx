@@ -51,11 +51,7 @@ function TermsOfService() {
           {/* Last Updated */}
           <div className="mb-8 p-4 bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-700 rounded-lg">
             <p className="text-blue-800 dark:text-blue-200 font-medium">
-              อัปเดตล่าสุด: {new Date().toLocaleDateString('th-TH', { 
-                year: 'numeric', 
-                month: 'long', 
-                day: 'numeric' 
-              })}
+              อัปเดตล่าสุด: 13 กุมภาพันธ์ 2569
             </p>
           </div>
 

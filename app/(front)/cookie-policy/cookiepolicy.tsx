@@ -51,11 +51,7 @@ function CookiePolicy() {
           {/* Last Updated */}
           <div className="mb-8 p-4 bg-orange-50 dark:bg-orange-900/30 border border-orange-200 dark:border-orange-700 rounded-lg">
             <p className="text-orange-800 dark:text-orange-200 font-medium">
-              อัปเดตล่าสุด: {new Date().toLocaleDateString('th-TH', { 
-                year: 'numeric', 
-                month: 'long', 
-                day: 'numeric' 
-              })}
+              อัปเดตล่าสุด: 13 กุมภาพันธ์ 2569
             </p>
           </div>
 

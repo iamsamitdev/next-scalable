@@ -9,6 +9,8 @@ import {
 } from '@/components/ui/dropdown-menu'
 import { ThemeToggle } from '@/components/ui/theme-toggle'
 
+import CartIcon from './CartIcon'
+
 interface AdminHeaderProps {
   onMenuClick: () => void
   onCollapseToggle?: () => void
@@ -74,6 +76,9 @@ function AdminHeader({ onMenuClick, onCollapseToggle, collapsed }: AdminHeaderPr
               3
             </span>
           </Button>
+
+          {/* Cart Icon */}
+          <CartIcon />
 
           {/* User menu */}
           <DropdownMenu>

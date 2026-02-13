@@ -51,11 +51,7 @@ function PrivacyPolicy() {
           {/* Last Updated */}
           <div className="mb-8 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg">
             <p className="text-green-800 dark:text-green-200 font-medium">
-              อัปเดตล่าสุด: {new Date().toLocaleDateString('th-TH', { 
-                year: 'numeric', 
-                month: 'long', 
-                day: 'numeric' 
-              })}
+              อัปเดตล่าสุด: 13 กุมภาพันธ์ 2569
             </p>
           </div>
 

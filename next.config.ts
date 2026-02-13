@@ -16,6 +16,8 @@ const nextConfig: NextConfig = {
   },
   experimental: {
     optimizePackageImports: ['lucide-react'],
+    // ppr: true, // เปิดใช้ Partial Prerendering
+    cacheComponents: true, // เปิดใช้ Component Caching
   },
   // Optimize font loading
   async headers() {
