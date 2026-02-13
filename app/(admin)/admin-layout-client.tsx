@@ -3,7 +3,6 @@
 import AdminSidebar from "@/components/admin/Sidebar"
 import AdminHeader from "@/components/admin/Header"
 import { useUIStore } from "@/stores/useUIStore"
-import { useEffect, useState } from "react"
 
 export default function AdminLayoutClient({
   children,
@@ -11,14 +10,8 @@ export default function AdminLayoutClient({
   children: React.ReactNode;
 }>) {
   const { sidebarOpen, setSidebarOpen, sidebarCollapsed, toggleSidebarCollapsed } = useUIStore()
-  const [mounted, setMounted] = useState(false)
 
-  useEffect(() => {
-    setMounted(true)
-  }, [])
-
-  // ก่อน hydrate เสร็จ ใช้ค่า default (expanded) เพื่อไม่ให้ sidebar บัง content
-  const collapsed = mounted ? sidebarCollapsed : false
+  const collapsed = sidebarCollapsed
 
   return (
     <div className="min-h-screen bg-background">
